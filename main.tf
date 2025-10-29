@@ -11,12 +11,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "storage_account_name" {
+  type = string
+}
 resource "aws_vpc" "example" {
   cidr_block = "10.0.0.0/16"
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket = "my-tf-test-bucket"
+  bucket = var.storage_account_name
 
   tags = {
     Name        = "My bucket"
